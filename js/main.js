@@ -90,10 +90,13 @@
     var list = document.querySelector(".process-list");
     var track = document.getElementById("processLine");
     var fill = document.getElementById("processLineFill");
-    if (!list || !track || !fill) return;
+    var icon = document.querySelector(".process-line-icon");
+    if (!list || !track || !fill || !icon) return;
 
     var nums = list.querySelectorAll(".process-num");
     if (nums.length < 2) return;
+
+    var items = list.querySelectorAll(".process-item");
 
     var trackTop = 0;
     var trackHeight = 0;
@@ -118,6 +121,25 @@
       var progress = (center - rect.top) / rect.height;
       progress = Math.max(0, Math.min(1, progress));
       fill.style.height = (progress * 100) + "%";
+
+      // Whichever step's row the icon is currently level with (using its
+      // real position — sticky-pinned mid-scroll, or its resting position
+      // at the top/bottom of the rail before/after that) gets marked active.
+      var iconY = icon.getBoundingClientRect().top;
+      var closest = null;
+      var closestDist = Infinity;
+      items.forEach(function (item) {
+        var itemRect = item.getBoundingClientRect();
+        var itemCenter = itemRect.top + itemRect.height / 2;
+        var dist = Math.abs(itemCenter - iconY);
+        if (dist < closestDist) {
+          closestDist = dist;
+          closest = item;
+        }
+      });
+      items.forEach(function (item) {
+        item.classList.toggle("is-active", item === closest);
+      });
     }
 
     layout();
@@ -126,6 +148,26 @@
     window.addEventListener("resize", function () { layout(); updateProgress(); });
     window.addEventListener("scroll", updateProgress, { passive: true });
   })();
+
+  /* ---- Hero video card: swaps the poster for a Vimeo embed once a real
+     video id is set on data-vimeo-id (currently empty — placeholder only). ---- */
+  var heroVideo = document.getElementById("heroVideo");
+  if (heroVideo) {
+    var playVideo = function () {
+      var vimeoId = heroVideo.getAttribute("data-vimeo-id");
+      if (!vimeoId) return;
+      heroVideo.innerHTML =
+        '<iframe src="https://player.vimeo.com/video/' + encodeURIComponent(vimeoId) +
+        '?autoplay=1&title=0&byline=0&portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>';
+    };
+    heroVideo.addEventListener("click", playVideo);
+    heroVideo.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        playVideo();
+      }
+    });
+  }
 
   /* ---- Lead form (front-end only; wire to a real endpoint before launch) ---- */
   var form = document.getElementById("leadForm");

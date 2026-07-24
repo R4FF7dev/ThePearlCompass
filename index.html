@@ -8,7 +8,7 @@
 <link rel="icon" type="image/png" href="assets/images/submark.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Josefin+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -21,12 +21,12 @@
     </a>
 
     <div class="header-actions">
+      <a href="#contact" class="btn btn-primary btn-small" data-i18n="cta_book">Book a Private Consultation</a>
       <div class="lang-switch" id="langSwitch">
         <button type="button" class="lang-btn" data-lang="en">EN</button>
         <button type="button" class="lang-btn" data-lang="nl">NL</button>
         <button type="button" class="lang-btn" data-lang="es">ES</button>
       </div>
-      <a href="#contact" class="btn btn-primary btn-small" data-i18n="cta_book">Book a Private Consultation</a>
     </div>
   </div>
 </header>
@@ -36,21 +36,30 @@
   <!-- ================= HERO ================= -->
   <section class="hero" id="hero">
     <div class="hero-media">
-      <img src="assets/images/hero.jpg" alt="Calella de Palafrugell, Costa Brava" loading="eager">
+      <img src="assets/images/hero-coastline.jpg" alt="Luxury villas on the Spanish Mediterranean coast at dusk" loading="eager">
       <div class="hero-scrim"></div>
     </div>
     <img src="assets/images/compass-motif.svg" alt="" aria-hidden="true" class="hero-compass">
     <div class="container hero-content">
-      <p class="eyebrow eyebrow-light" data-i18n="hero_eyebrow">BUYER'S AGENCY, SPANISH MEDITERRANEAN</p>
-      <h1 data-i18n-html="hero_headline_html">Your interests.<br>Represented. <span class="accent">Nothing else.</span></h1>
-      <p class="hero-sub" data-i18n="hero_sub">The Pearl Compass is a boutique buyers' agency for those acquiring luxury property on the Spanish Mediterranean, from the Costa Brava to Marbella, and the Balearic Islands. We work exclusively on your behalf, and no one else's.</p>
-      <div class="hero-ctas">
-        <a href="#contact" class="btn btn-primary" data-i18n="hero_cta_primary">Book Your Private Consultation</a>
-        <a href="https://wa.me/34680992848" target="_blank" rel="noopener" class="btn btn-ghost-light" data-i18n="hero_cta_secondary">
-          Message on WhatsApp
-        </a>
+      <div class="hero-text">
+        <p class="eyebrow eyebrow-light" data-i18n="hero_eyebrow">BUYER'S AGENCY, SPANISH MEDITERRANEAN</p>
+        <h1 data-i18n-html="hero_headline_html">Buying property in Spain<br>should feel exciting,<br><span class="accent">not overwhelming.</span></h1>
+        <p class="hero-sub" data-i18n="hero_sub">The Pearl Compass is a boutique buyers' agency for those acquiring luxury property on the Spanish Mediterranean, from the Costa Brava to Marbella, and the Balearic Islands. We work exclusively on your behalf, and no one else's.</p>
+        <div class="hero-ctas">
+          <a href="#contact" class="btn btn-primary" data-i18n="hero_cta_primary">Book Your Private Consultation</a>
+          <a href="https://wa.me/34680992848" target="_blank" rel="noopener" class="btn btn-ghost-light" data-i18n="hero_cta_secondary">
+            Message on WhatsApp
+          </a>
+        </div>
+        <p class="hero-trust" data-i18n="hero_trust">Independent · Buyer-side only · By introduction and referral</p>
       </div>
-      <p class="hero-trust" data-i18n="hero_trust">Independent · Buyer-side only · By introduction and referral</p>
+
+      <div class="hero-video" id="heroVideo" data-vimeo-id="" role="button" tabindex="0" aria-label="Play video">
+        <img src="assets/images/region-costadelsol.jpg" alt="" class="hero-video-poster">
+        <span class="hero-video-play" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        </span>
+      </div>
     </div>
   </section>
 
@@ -116,23 +125,23 @@
             <img src="assets/images/submark.png" alt="" class="process-line-icon">
           </div>
         </div>
-        <div class="process-item">
+        <div class="process-item process-item-left" style="grid-row:1">
           <span class="process-num">01</span>
           <div><h3 data-i18n="step1_title">Search &amp; Market Analysis</h3><p data-i18n="step1_text">We define the brief precisely, then search, including properties never publicly listed, and assess true value before you view a single one.</p></div>
         </div>
-        <div class="process-item">
+        <div class="process-item process-item-right" style="grid-row:2">
           <span class="process-num">02</span>
           <div><h3 data-i18n="step2_title">Negotiation</h3><p data-i18n="step2_text">We negotiate on price and terms as your representative alone, briefed on leverage the seller's agent will never volunteer.</p></div>
         </div>
-        <div class="process-item">
+        <div class="process-item process-item-left" style="grid-row:3">
           <span class="process-num">03</span>
           <div><h3 data-i18n="step3_title">Legal Coordination</h3><p data-i18n="step3_text">We manage lawyers, notaries and due diligence, so nothing is signed until you fully understand what it means.</p></div>
         </div>
-        <div class="process-item">
+        <div class="process-item process-item-right" style="grid-row:4">
           <span class="process-num">04</span>
           <div><h3 data-i18n="step4_title">Relocation</h3><p data-i18n="step4_text">From NIE numbers to utilities and schools, we handle the practicalities of actually settling in.</p></div>
         </div>
-        <div class="process-item">
+        <div class="process-item process-item-left" style="grid-row:5">
           <span class="process-num">05</span>
           <div><h3 data-i18n="step5_title">Aftercare</h3><p data-i18n="step5_text">Our relationship doesn't end at completion. We remain your point of contact long after the keys change hands.</p></div>
         </div>

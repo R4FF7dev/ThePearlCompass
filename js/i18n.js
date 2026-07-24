@@ -5,7 +5,7 @@ const translations = {
     cta_book: "Book a Consultation",
 
     hero_eyebrow: "BUYER'S AGENCY, SPANISH MEDITERRANEAN",
-    hero_headline_html: "Your interests.<br>Represented.<br><span class=\"accent\">Nothing else.</span>",
+    hero_headline_html: "Buying property in Spain<br>should feel exciting,<br><span class=\"accent\">not overwhelming.</span>",
     hero_sub: "The Pearl Compass is a boutique buyers' agency for those acquiring luxury property on the Spanish Mediterranean, from the Costa Brava to Marbella, and the Balearic Islands. We work exclusively on your behalf, and no one else's.",
     hero_cta_primary: "Book Your Private Consultation",
     hero_cta_secondary: "Message on WhatsApp",
@@ -113,7 +113,7 @@ const translations = {
     cta_book: "Plan een Gesprek",
 
     hero_eyebrow: "AANKOOPMAKELAAR, SPAANSE MIDDELLANDSE ZEEKUST",
-    hero_headline_html: "Een tweede huis kopen in Spanje is<br><span class=\"accent\">geen makkelijke beslissing.</span>",
+    hero_headline_html: "Een huis kopen in Spanje<br>hoort opwindend te voelen,<br><span class=\"accent\">niet overweldigend.</span>",
     hero_sub: "Ander rechtssysteem, andere taal, andere gewoonten, en een aankoop die zich niet zomaar laat terugdraaien. The Pearl Compass is een boutique aankoopmakelaar die uitsluitend voor de koper werkt, van de Costa Brava tot Marbella en de Balearen.",
     hero_cta_primary: "Plan Uw Persoonlijke Gesprek",
     hero_cta_secondary: "Stuur een bericht via WhatsApp",
@@ -221,7 +221,7 @@ const translations = {
     cta_book: "Reserve una Consulta",
 
     hero_eyebrow: "AGENCIA COMPRADORA, COSTA MEDITERRÁNEA ESPAÑOLA",
-    hero_headline_html: "Sus intereses.<br>Representados.<br><span class=\"accent\">Nada más.</span>",
+    hero_headline_html: "Comprar una propiedad en España<br>debería sentirse emocionante,<br><span class=\"accent\">no abrumador.</span>",
     hero_sub: "The Pearl Compass es una agencia compradora boutique para quienes adquieren una propiedad de lujo en la costa mediterránea española, desde la Costa Brava hasta Marbella, y las Islas Baleares. Trabajamos exclusivamente en su nombre, y en el de nadie más.",
     hero_cta_primary: "Reserve Su Consulta Privada",
     hero_cta_secondary: "Escriba por WhatsApp",
