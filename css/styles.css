@@ -1,0 +1,644 @@
+/* ============================================================
+   The Pearl Compass, Landing Page Styles
+   Palette derived from brand mark: warm ivory + taupe/rose-gold
+   ============================================================ */
+
+:root {
+  --ivory: #FAF5EC;
+  --paper: #FFFDF9;
+  --cream-dark: #F0E6D6;
+  --ink: #262019;
+  --ink-soft: #55493D;
+  --ink-faint: #8A7C6C;
+
+  --gold-light: #D9C1A3;
+  --gold: #A9805C;
+  --gold-dark: #7C5A3E;
+  --line: #E3D5BF;
+
+  --sea: #48697A;
+  --sea-soft: #7C9CAA;
+
+  --ink-dark-bg: #211C17;
+  --header-h: 124px;
+
+  --font-serif: 'Cormorant Garamond', 'Georgia', serif;
+  --font-sans: 'Josefin Sans', 'Helvetica Neue', Arial, sans-serif;
+
+  --container: 1180px;
+  --radius: 2px;
+  --shadow-soft: 0 18px 50px -25px rgba(38, 32, 25, 0.35);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--ivory);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-weight: 300;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+
+img { max-width: 100%; display: block; }
+
+a { color: inherit; text-decoration: none; }
+
+h1, h2, h3, h4 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  color: var(--ink);
+  margin: 0 0 0.5em;
+  letter-spacing: 0.01em;
+}
+
+h1 { font-size: clamp(2.6rem, 5.5vw, 4.6rem); font-weight: 400; line-height: 1.08; }
+h2 { font-size: clamp(1.9rem, 3.4vw, 2.9rem); line-height: 1.18; }
+h3 { font-size: clamp(1.2rem, 2vw, 1.5rem); font-weight: 500; }
+
+p { margin: 0 0 1em; }
+
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.76rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 500;
+  margin: 0 0 1em;
+}
+.eyebrow-light { color: var(--gold-light); }
+
+.accent { color: var(--gold-dark); font-style: italic; }
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px 34px;
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 500;
+  border-radius: var(--radius);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
+  text-align: center;
+}
+.btn-primary {
+  background: var(--gold);
+  color: #fff;
+  border-color: var(--gold);
+}
+.btn-primary:hover { background: var(--gold-dark); border-color: var(--gold-dark); transform: translateY(-1px); }
+
+.btn-ghost-light {
+  background: transparent;
+  color: #fff;
+  border-color: rgba(255,255,255,0.55);
+}
+.btn-ghost-light:hover { background: rgba(255,255,255,0.12); border-color: #fff; }
+
+.btn-small { padding: 11px 18px; font-size: 0.68rem; letter-spacing: 0.1em; }
+.btn-full { width: 100%; }
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+/* Transparent by default so it sits cleanly over the hero photo; picks up a
+   solid, blurred background only once scrolled past the hero, where the
+   page underneath is no longer a photo and needs a legible surface. */
+.site-header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 500;
+  border-bottom: 1px solid transparent;
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.site-header.scrolled {
+  background: rgba(250, 245, 236, 0.92);
+  backdrop-filter: blur(10px);
+  border-bottom-color: var(--line);
+  box-shadow: 0 8px 24px -18px rgba(38,32,25,0.25);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  height: var(--header-h);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  flex-shrink: 0;
+}
+.brand-mark {
+  height: 96px; width: auto; flex-shrink: 0;
+  /* The mark's rose-gold gradient is soft by design and reads poorly at
+     header scale; brighten/lift it over the dark hero photo, then darken
+     and add contrast once the header's own background goes light. */
+  filter: brightness(1.4) contrast(1.15) drop-shadow(0 1px 8px rgba(20,16,12,0.45));
+  transition: filter 0.3s ease;
+}
+.site-header.scrolled .brand-mark { filter: brightness(0.6) contrast(1.35); }
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  flex-shrink: 0;
+}
+
+.lang-switch {
+  display: flex;
+  gap: 2px;
+  border: 1px solid rgba(255,255,255,0.5);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: border-color 0.3s ease;
+}
+.site-header.scrolled .lang-switch { border-color: var(--line); }
+.lang-btn {
+  background: transparent;
+  border: none;
+  padding: 7px 11px;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: var(--gold);
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.lang-btn:hover { color: var(--gold-dark); }
+.lang-btn.active { background: var(--gold); color: #fff; }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+.hero-media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.hero-media img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+.hero-scrim {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(33,28,23,0.55) 0%, rgba(33,28,23,0.35) 35%, rgba(33,28,23,0.72) 100%);
+}
+.hero-compass {
+  position: absolute;
+  right: -14%;
+  bottom: -22%;
+  z-index: 1;
+  width: min(60vw, 900px);
+  min-width: 480px;
+  height: auto;
+  opacity: 0.6;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  animation: hero-compass-spin 120s linear infinite;
+}
+@keyframes hero-compass-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.hero-content {
+  /* No max-width override here on purpose: .hero-content shares the
+     .container class, so leaving container's max-width in place keeps
+     its left edge aligned with the header/logo above it. Individual
+     children (hero-sub) constrain their own line length instead.
+     width:100% matters here because .hero-content is a flex item (child
+     of .hero) — flex items shrink-to-fit by default instead of filling
+     the row the way a plain block-level .container does, which without
+     this would center the shrunk content instead of aligning it left. */
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding-top: 160px;
+  padding-bottom: 80px;
+}
+.hero-content h1 { color: #fff; text-shadow: 0 4px 24px rgba(20,16,12,0.45); }
+.hero-content h1 .accent { color: #E7C79C; }
+.hero-sub {
+  color: rgba(255,255,255,0.88);
+  font-size: 1.1rem;
+  max-width: 620px;
+  margin-bottom: 2em;
+}
+.hero-ctas { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 2em; }
+.hero-trust {
+  color: rgba(255,255,255,0.7);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+/* ============================================================
+   GENERIC SECTIONS
+   ============================================================ */
+.section { padding: 110px 0; position: relative; }
+.section-alt { background: var(--cream-dark); }
+.section-dark {
+  background: var(--ink-dark-bg);
+  color: rgba(255,255,255,0.85);
+}
+.on-dark { color: #fff; }
+
+.section-head {
+  max-width: 720px;
+  margin: 0 auto 64px;
+  text-align: center;
+}
+.section-intro {
+  font-size: 1.08rem;
+  color: var(--ink-soft);
+  max-width: 620px;
+  margin: 0 auto;
+}
+.section-dark .section-intro { color: rgba(255,255,255,0.72); }
+
+/* Reveal animation, progressive enhancement only: content is visible by
+   default so it never depends on JS/IntersectionObserver to be seen. */
+.js .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.js .reveal.in-view { opacity: 1; transform: translateY(0); }
+
+/* ============================================================
+   RISK GRID
+   ============================================================ */
+.risk-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  margin-bottom: 48px;
+}
+.risk-item {
+  background: var(--paper);
+  padding: 40px 34px;
+}
+.risk-num {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  color: var(--gold-light);
+  margin-bottom: 14px;
+}
+.risk-item h3 { margin-bottom: 0.4em; }
+.risk-item p { color: var(--ink-soft); font-size: 0.96rem; margin: 0; }
+
+.risk-closing {
+  max-width: 680px;
+  margin: 0 auto;
+  text-align: center;
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-style: italic;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+
+/* ============================================================
+   PROCESS
+   ============================================================ */
+.process-list {
+  position: relative;
+  max-width: 820px;
+  margin: 0 auto;
+  padding-left: 64px;
+  border-top: 1px solid var(--line);
+}
+.process-item {
+  display: flex;
+  gap: 32px;
+  padding: 34px 0;
+  border-bottom: 1px solid var(--line);
+}
+.process-num {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  color: var(--gold-light);
+  flex-shrink: 0;
+  width: 50px;
+}
+.process-item h3 { margin-bottom: 0.35em; }
+.process-item p { color: var(--ink-soft); margin: 0; }
+
+/* Scroll-driven progress rail: sits in its own gutter to the left of the
+   step numbers (01-05) rather than behind them. Grey track is always
+   visible; gold fill grows as the section scrolls past. Position/height
+   of .process-line itself are set from JS so it lines up exactly with
+   the first/last number regardless of font metrics.
+   The brand-mark icon uses position:sticky (pinned at the viewport's
+   vertical centre) so it reads as holding still while the page scrolls
+   and the fill grows up to meet it, rather than the icon travelling. */
+.process-line {
+  position: absolute;
+  left: 4px;
+  width: 2px;
+  background: var(--line);
+  z-index: 0;
+}
+.process-line-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 0%;
+  background: var(--gold);
+}
+.process-line-icon-wrap {
+  position: sticky;
+  top: 50vh;
+  height: 0;
+}
+.process-line-icon {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  /* .process-line-icon's containing block is .process-line-icon-wrap,
+     which is only 2px wide — without this, the global img{max-width:100%}
+     rule resolves against that and squashes the icon to a sliver instead
+     of a circle. */
+  max-width: none;
+  width: 44px;
+  height: 44px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  box-shadow: 0 3px 12px rgba(38,32,25,0.28);
+  padding: 9px;
+  object-fit: contain;
+}
+
+/* ============================================================
+   ABOUT
+   ============================================================ */
+.about-grid {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 72px;
+  align-items: center;
+}
+.about-media img {
+  width: 100%;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+}
+.about-copy p { color: var(--ink-soft); }
+.about-copy blockquote {
+  margin: 2em 0 0;
+  padding: 24px 0 0;
+  border-top: 1px solid var(--line);
+}
+.about-copy blockquote p {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.5rem;
+  color: var(--ink);
+  margin-bottom: 0.3em;
+}
+.about-copy cite {
+  font-style: normal;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+}
+
+/* ============================================================
+   REGIONS
+   ============================================================ */
+.region-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+.region-card:first-child { grid-column: span 2; }
+.region-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius);
+  aspect-ratio: 4/5;
+  box-shadow: var(--shadow-soft);
+}
+.region-card:first-child { aspect-ratio: 16/10; }
+.region-card img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+.region-card:hover img { transform: scale(1.06); }
+.region-copy {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: 28px 26px;
+  background: linear-gradient(180deg, rgba(33,28,23,0) 0%, rgba(33,28,23,0.85) 75%);
+  color: #fff;
+}
+.region-copy h3 { color: #fff; margin-bottom: 0.3em; font-size: 1.3rem; }
+.region-copy p { font-size: 0.92rem; color: rgba(255,255,255,0.85); margin: 0; max-width: 34em; }
+
+/* ============================================================
+   TESTIMONIALS
+   ============================================================ */
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+}
+.testimonial-card {
+  margin: 0;
+  padding: 44px 40px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: var(--radius);
+}
+.testimonial-card blockquote {
+  margin: 0 0 24px;
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-style: italic;
+  line-height: 1.5;
+  color: #fff;
+}
+.testimonial-card figcaption { display: flex; flex-direction: column; gap: 2px; }
+.t-name { font-size: 0.85rem; letter-spacing: 0.04em; color: var(--gold-light); text-transform: uppercase; }
+.t-loc { font-size: 0.8rem; color: rgba(255,255,255,0.55); }
+
+/* ============================================================
+   CONTACT / FORM
+   ============================================================ */
+.contact-section { background: var(--paper); }
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.05fr;
+  gap: 72px;
+  align-items: start;
+}
+.contact-copy { position: sticky; top: 120px; }
+.slogan { font-style: italic; }
+.contact-alt { margin-top: 1.6em; font-size: 0.95rem; }
+.contact-alt a { color: var(--gold-dark); border-bottom: 1px solid var(--gold-light); }
+
+.contact-form {
+  background: var(--ivory);
+  border: 1px solid var(--line);
+  padding: 44px;
+  border-radius: var(--radius);
+}
+.field { margin-bottom: 20px; }
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.field label {
+  display: block;
+  font-size: 0.76rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 8px;
+}
+.field input, .field select, .field textarea {
+  width: 100%;
+  padding: 13px 14px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  color: var(--ink);
+  border-radius: var(--radius);
+  transition: border-color 0.2s ease;
+}
+.field input:focus, .field select:focus, .field textarea:focus {
+  outline: none;
+  border-color: var(--gold);
+}
+.field textarea { resize: vertical; }
+
+.consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.86rem;
+  color: var(--ink-soft);
+  margin: 4px 0 26px;
+  cursor: pointer;
+}
+.consent input { margin-top: 3px; }
+
+.form-success { text-align: center; padding: 30px 10px; }
+.form-success h3 { color: var(--gold-dark); }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.site-footer {
+  background: var(--ink-dark-bg);
+  color: rgba(255,255,255,0.65);
+  padding: 70px 0 0;
+}
+.footer-inner {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 40px;
+  padding-bottom: 50px;
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+}
+.footer-mark { height: 46px; width: auto; margin-bottom: 16px; filter: brightness(0) invert(1) opacity(0.9); }
+.footer-brand p { font-size: 0.9rem; max-width: 26em; }
+.footer-col h4 {
+  font-family: var(--font-sans);
+  font-size: 0.76rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 16px;
+  font-weight: 500;
+}
+.footer-col a, .footer-col p { display: block; font-size: 0.92rem; margin-bottom: 10px; color: rgba(255,255,255,0.72); }
+.footer-col a:hover { color: var(--gold-light); }
+.social-icons { display: flex; gap: 14px; }
+.social-icons a { width: 34px; height: 34px; border: 1px solid rgba(255,255,255,0.25); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+.social-icons svg { width: 16px; height: 16px; }
+.social-icons a:hover { border-color: var(--gold-light); color: var(--gold-light); }
+
+.footer-bottom { padding: 22px 0; }
+.footer-bottom p { margin: 0; font-size: 0.8rem; color: rgba(255,255,255,0.4); }
+
+/* ============================================================
+   STICKY MOBILE CTA
+   ============================================================ */
+.sticky-cta {
+  display: none;
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  z-index: 400;
+  padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+  background: rgba(250,245,236,0.95);
+  backdrop-filter: blur(8px);
+  border-top: 1px solid var(--line);
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 980px) {
+  .risk-grid { grid-template-columns: 1fr; }
+  .about-grid { grid-template-columns: 1fr; gap: 40px; }
+  .region-grid { grid-template-columns: repeat(2, 1fr); }
+  .region-card:first-child { grid-column: span 2; }
+  .testimonial-grid { grid-template-columns: 1fr; }
+  .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+  .contact-copy { position: static; }
+  .footer-inner { grid-template-columns: 1fr 1fr; gap: 36px 24px; }
+
+  .sticky-cta { display: block; }
+  .section { padding: 80px 0; }
+  body { padding-bottom: 78px; }
+}
+
+@media (max-width: 600px) {
+  .container { padding: 0 20px; }
+  :root { --header-h: 100px; }
+  .brand-mark { height: 72px; }
+  .header-actions .btn-small { display: none; } /* sticky-cta below covers this CTA on small screens */
+  .hero-content { padding-top: 130px; padding-bottom: 130px; }
+  .field-row { grid-template-columns: 1fr; }
+  .region-grid { grid-template-columns: 1fr; }
+  .region-card:first-child { grid-column: span 1; }
+  .contact-form { padding: 30px 24px; }
+  .risk-item { padding: 32px 24px; }
+}

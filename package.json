@@ -1,0 +1,9 @@
+{
+  "name": "pearl-compass-landing",
+  "private": true,
+  "version": "1.0.0",
+  "description": "The Pearl Compass — static landing page (no build step required).",
+  "scripts": {
+    "dev": "npx --yes serve -l 3000 ."
+  }
+}
