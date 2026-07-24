@@ -59,7 +59,7 @@ h1, h2, h3, h4 {
   letter-spacing: 0.01em;
 }
 
-h1 { font-size: clamp(2rem, 4vw, 3.4rem); font-weight: 400; line-height: 1.1; }
+h1 { font-size: clamp(1.7rem, 3.5vw, 2.7rem); font-weight: 400; line-height: 1.1; }
 h2 { font-size: clamp(1.9rem, 3.4vw, 2.9rem); line-height: 1.18; }
 h3 { font-size: clamp(1.2rem, 2vw, 1.5rem); font-weight: 500; }
 
@@ -198,6 +198,10 @@ p { margin: 0 0 1em; }
 .site-header.scrolled .lang-btn { color: var(--gold); }
 .site-header.scrolled .lang-btn:hover { color: var(--gold-dark); }
 .lang-btn.active { background: var(--gold); color: #fff; }
+.site-header.scrolled .lang-btn.active,
+.site-header.scrolled .lang-btn.active:hover {
+  color: #fff;
+}
 
 /* ============================================================
    HERO
@@ -256,7 +260,7 @@ p { margin: 0 0 1em; }
   padding-top: 160px;
   padding-bottom: 80px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 56px;
 }
@@ -291,6 +295,7 @@ p { margin: 0 0 1em; }
   cursor: pointer;
   box-shadow: 0 30px 70px -25px rgba(5,10,20,0.55);
   border: 1px solid rgba(255,255,255,0.25);
+  margin-top: 2.2rem;
 }
 .hero-video-poster {
   position: absolute;
@@ -381,7 +386,7 @@ p { margin: 0 0 1em; }
 }
 .risk-num {
   display: block;
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-size: 1.3rem;
   color: var(--gold-light);
   margin-bottom: 14px;
@@ -434,7 +439,7 @@ p { margin: 0 0 1em; }
   text-align: left;
 }
 .process-num {
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-size: 1.6rem;
   color: var(--gold-light);
   flex-shrink: 0;
@@ -505,6 +510,11 @@ p { margin: 0 0 1em; }
   box-shadow: 0 3px 12px rgba(15,25,45,0.28);
   padding: 9px;
   object-fit: contain;
+  animation: process-icon-spin 15s linear infinite;
+}
+@keyframes process-icon-spin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
 /* ============================================================
@@ -723,7 +733,7 @@ p { margin: 0 0 1em; }
      the video under the text instead. */
   .hero-content { flex-direction: column; align-items: stretch; gap: 40px; }
   .hero-text { max-width: none; }
-  .hero-video { width: 100%; aspect-ratio: 16/9; }
+  .hero-video { width: 100%; aspect-ratio: 16/9; margin-top: 0; }
 
   /* Zigzag timeline needs real width either side of the rail; below this,
      collapse back to a single column with the rail running down the left. */
