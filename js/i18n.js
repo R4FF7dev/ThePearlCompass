@@ -105,7 +105,6 @@ const translations = {
     footer_privacy: "Privacy Policy",
     footer_terms: "Terms",
 
-    sticky_cta: "Book a Private Consultation"
   },
 
   nl: {
@@ -213,7 +212,6 @@ const translations = {
     footer_privacy: "Privacybeleid",
     footer_terms: "Voorwaarden",
 
-    sticky_cta: "Plan een Persoonlijk Gesprek"
   },
 
   es: {
@@ -321,6 +319,5 @@ const translations = {
     footer_privacy: "Política de Privacidad",
     footer_terms: "Términos",
 
-    sticky_cta: "Reserve una Consulta Privada"
   }
 };
