@@ -149,26 +149,6 @@
     window.addEventListener("scroll", updateProgress, { passive: true });
   })();
 
-  /* ---- Hero video card: swaps the poster for a Vimeo embed once a real
-     video id is set on data-vimeo-id (currently empty — placeholder only). ---- */
-  var heroVideo = document.getElementById("heroVideo");
-  if (heroVideo) {
-    var playVideo = function () {
-      var vimeoId = heroVideo.getAttribute("data-vimeo-id");
-      if (!vimeoId) return;
-      heroVideo.innerHTML =
-        '<iframe src="https://player.vimeo.com/video/' + encodeURIComponent(vimeoId) +
-        '?autoplay=1&title=0&byline=0&portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>';
-    };
-    heroVideo.addEventListener("click", playVideo);
-    heroVideo.addEventListener("keydown", function (e) {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        playVideo();
-      }
-    });
-  }
-
   /* ---- Lead form (front-end only; wire to a real endpoint before launch) ---- */
   var form = document.getElementById("leadForm");
   var fields = document.getElementById("formFields");

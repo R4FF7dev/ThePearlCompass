@@ -282,9 +282,7 @@ p { margin: 0 0 1em; }
   margin: 0;
 }
 
-/* Video card: placeholder poster + play button for now (data-vimeo-id is
-   empty until a real Vimeo video is wired up — see the click handler in
-   main.js, which swaps this for an actual embed once an id is set). */
+/* Video card: autoplaying, muted, controls-free background video. */
 .hero-video {
   position: relative;
   flex-shrink: 0;
@@ -292,52 +290,16 @@ p { margin: 0 0 1em; }
   aspect-ratio: 16/10;
   border-radius: 6px;
   overflow: hidden;
-  cursor: pointer;
   box-shadow: 0 30px 70px -25px rgba(5,10,20,0.55);
   border: 1px solid rgba(255,255,255,0.25);
   margin-top: 2.2rem;
 }
-.hero-video-poster {
+.hero-video video {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.6s ease;
-}
-.hero-video:hover .hero-video-poster { transform: scale(1.04); }
-.hero-video::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(8,16,30,0.28);
-  transition: background 0.25s ease;
-}
-.hero-video:hover::after { background: rgba(8,16,30,0.4); }
-.hero-video-play {
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1;
-  width: 68px;
-  height: 68px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.95);
-  color: var(--gold);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 8px 24px rgba(5,10,20,0.35);
-  transition: transform 0.25s ease, background 0.25s ease;
-}
-.hero-video-play svg { width: 26px; height: 26px; margin-left: 3px; }
-.hero-video:hover .hero-video-play { transform: translate(-50%, -50%) scale(1.08); background: #fff; }
-.hero-video iframe {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
 }
 
 /* ============================================================
