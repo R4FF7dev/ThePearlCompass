@@ -15,6 +15,44 @@
     return "en";
   }
 
+  /* Builds the testimonial marquee for the given language's review list,
+     duplicating the set once so the track can loop seamlessly at -50%. */
+  function renderTestimonials(list) {
+    var track = document.getElementById("testimonialTrack");
+    if (!track || !list || !list.length) return;
+
+    track.style.animation = "none";
+    track.innerHTML = "";
+
+    for (var s = 0; s < 2; s++) {
+      list.forEach(function (t) {
+        var fig = document.createElement("figure");
+        fig.className = "testimonial-card";
+
+        var bq = document.createElement("blockquote");
+        bq.textContent = t.text;
+
+        var cap = document.createElement("figcaption");
+        var name = document.createElement("span");
+        name.className = "t-name";
+        name.textContent = t.name;
+        var loc = document.createElement("span");
+        loc.className = "t-loc";
+        loc.textContent = t.loc;
+        cap.appendChild(name);
+        cap.appendChild(loc);
+
+        fig.appendChild(bq);
+        fig.appendChild(cap);
+        track.appendChild(fig);
+      });
+    }
+
+    var duration = Math.max(list.length * 24, 48);
+    void track.offsetWidth; /* force reflow so the animation restarts cleanly */
+    track.style.animation = "testimonial-scroll " + duration + "s linear infinite";
+  }
+
   function applyLanguage(lang) {
     var dict = translations[lang] || translations.en;
 
@@ -40,12 +78,44 @@
       btn.classList.toggle("active", btn.getAttribute("data-lang") === lang);
     });
 
+    renderTestimonials(dict.testimonials);
+
+    var fLanguage = document.getElementById("fLanguage");
+    if (fLanguage && !fLanguage.dataset.userSet && ["en", "nl", "es"].indexOf(lang) !== -1) {
+      fLanguage.value = lang;
+    }
+
     localStorage.setItem(STORAGE_KEY, lang);
   }
+
+  /* ---- Language menu: globe icon toggles a small dropdown ---- */
+  var langSwitch = document.getElementById("langSwitch");
+  var langToggle = document.getElementById("langToggle");
+
+  function closeLangMenu() {
+    langSwitch.classList.remove("open");
+    langToggle.setAttribute("aria-expanded", "false");
+  }
+  function toggleLangMenu() {
+    var open = langSwitch.classList.toggle("open");
+    langToggle.setAttribute("aria-expanded", open ? "true" : "false");
+  }
+
+  langToggle.addEventListener("click", function (e) {
+    e.stopPropagation();
+    toggleLangMenu();
+  });
+  document.addEventListener("click", function (e) {
+    if (!langSwitch.contains(e.target)) closeLangMenu();
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") closeLangMenu();
+  });
 
   document.querySelectorAll(".lang-btn").forEach(function (btn) {
     btn.addEventListener("click", function () {
       applyLanguage(btn.getAttribute("data-lang"));
+      closeLangMenu();
     });
   });
 
@@ -64,7 +134,7 @@
 
   /* ---- Reveal-on-scroll ---- */
   var revealTargets = document.querySelectorAll(
-    ".risk-item, .persona-card, .process-item, .region-card, .testimonial-card, .about-media, .about-copy, .section-head"
+    ".risk-item, .persona-card, .process-item, .region-card, .testimonial-carousel, .about-media, .about-copy, .section-head"
   );
   revealTargets.forEach(function (el) { el.classList.add("reveal"); });
 
@@ -153,6 +223,13 @@
   var form = document.getElementById("leadForm");
   var fields = document.getElementById("formFields");
   var success = document.getElementById("formSuccess");
+
+  var fLanguageField = document.getElementById("fLanguage");
+  if (fLanguageField) {
+    fLanguageField.addEventListener("change", function () {
+      fLanguageField.dataset.userSet = "1";
+    });
+  }
 
   form.addEventListener("submit", function (e) {
     e.preventDefault();
